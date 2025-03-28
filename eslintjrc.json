@@ -1,0 +1,19 @@
+{
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended", "prettier"],
+  "rules": {
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-unused-vars": "warn",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "semi": true,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "plugins": ["prettier"]
+}
