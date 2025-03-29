@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Repository Title
 
-## Getting Started
+![version](https://img.shields.io/badge/version-0.0.0-gold?style=for-the-badge)
+[![developer](https://img.shields.io/badge/developed-GYCODING-B833FF?style=for-the-badge)](https://gycoding.com)
+[![website](https://img.shields.io/badge/website-link-lightgrey?style=for-the-badge)](#)
 
-First, run the development server:
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Introduction
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Brief description of this project.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How it was made
 
-## Learn More
+Description of the technologies and procedures used to develop this project.
 
-To learn more about Next.js, take a look at the following resources:
+<br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Creators
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Product Owner | Collaborators
+| :---: | :---: |
+| <img src="https://github.com/ghost.png?size=115" width=115> <br> [![ghost1](https://img.shields.io/badge/ghost-black?style=for-the-badge)](https://github.com/ghost) | <img src="https://github.com/ghost.png?size=115" width=115> <br> [![ghost2](https://img.shields.io/badge/ghost-black?style=for-the-badge)](https://github.com/ghost) |
 
-## Deploy on Vercel
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<pre align="center">GYCODING 2025</pre>
