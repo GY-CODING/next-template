@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+
+    environment {
+        NVM_DIR = "${WORKSPACE}/.nvm"
+
+        GITHUB_USER = 'gy-gfigueras'
+        GITHUB_TOKEN = credentials('FRONT_GITHUB_TOKEN')
+
+        MAIN_REPO = 'GY-CODING/<repo>'
+        FORK_REPO = "${GITHUB_USER}/<repo>"
+        WORKSPACE_DIR = '<project_name>'
+        VERCEL_DEPLOY_URL = credentials('<PROJECT>_VERCEL_DEPLOY_URL')
+    }
+
+    stages {
+        stage('Prepare Repository') {
+            steps {
+                script {
+                    if (fileExists(WORKSPACE_DIR)) {
+                        echo "Repository already exists, updating..."
+                        dir(WORKSPACE_DIR) {
+                            sh '''
+                            git reset --hard
+                            git clean -fd
+                            git checkout main
+                            git pull origin main
+                            '''
+                        }
+                    } else {
+                        echo "Cloning repository..."
+                        sh '''
+                        git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/$FORK_REPO.git $WORKSPACE_DIR
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Sync Fork') {
+            steps {
+                script {
+                    dir(WORKSPACE_DIR) {
+                        sh '''
+                        git remote add upstream https://github.com/$MAIN_REPO.git || true
+                        git fetch upstream
+                        git checkout main
+                        git merge upstream/main --allow-unrelated-histories
+                        git push origin main
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Vercel') {
+            steps {
+                script {
+                    sh "curl -X POST $VERCEL_DEPLOY_URL"
+                }
+            }
+        }
+
+        stage('Create Release') {
+            steps {
+                script {
+                    def WORKFLOW_FILE = "release.yml"
+
+                    sh """
+                    curl -X POST https://api.github.com/repos/$MAIN_REPO/actions/workflows/$WORKFLOW_FILE/dispatches \
+                        -H "Accept: application/vnd.github.v3+json" \
+                        -H "Authorization: token $GITHUB_TOKEN" \
+                        -d '{ "ref": "main" }'
+                    """
+                }
+            }
+        }
+    }
+}
